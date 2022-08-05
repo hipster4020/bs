@@ -1,0 +1,17 @@
+data
+.ipynb_checkpoints
+0_processing/__pycache__
+0_processing/.ipynb_checkpoints
+1_ttest/__pycache__
+1_ttest/.ipynb_checkpoints
+2_svm/__pycache__
+2_svm/.ipynb_checkpoints
+2_svm/result
+2_svm/src/.ipynb_checkpoints
+2_svm/src/naivebayes.ipynb
+3_linear_regression/result
+3_linear_regression/src/__pycache__
+3_linear_regression/src/.ipynb_checkpoints
+3_linear_regression/src/models/__pycache__
+3_linear_regression/src/outputs
+3_linear_regression/src/config.yml
