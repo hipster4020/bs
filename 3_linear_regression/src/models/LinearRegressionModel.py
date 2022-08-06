@@ -40,12 +40,6 @@ class PLModel(LightningModule):
         x, y = batch
         y_hat = self(x).view(-1)
         
-        # y_hat = y_hat.cpu().numpy()
-        # y_hat = torch.from_numpy(np.where(y_hat < 0., 0., y_hat)).cuda()
-        
-        # y_hat = torch.where(y_hat < 0, 0, y_hat)
-        # y_hat = y_hat.float()
-
         # round, loss 확인
         print(f"y_hat : {y_hat[:10]}")
         print(f"y : {y[:10]}")
