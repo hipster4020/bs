@@ -40,17 +40,11 @@ class PLModel(LightningModule):
         x, y = batch
         y_hat = self(x).view(-1)
         
-        # round, loss 확인
-        print(f"y_hat : {y_hat[:10]}")
-        print(f"y : {y[:10]}")
-        
         loss = F.mse_loss(y_hat, y)
-        loss /= x.size(0)
-        val_acc = FM.accuracy(y_hat.int(), y.int())
+        loss /= y_hat.size(0)
 
         log_dict = {
             "eval/loss": loss,
-            "eval/acc": val_acc,
         }
         self.log_dict(log_dict, on_epoch=True)
 
