@@ -1,3 +1,4 @@
+import numpy as np
 import torch
 import torch.nn as nn
 from pytorch_lightning import LightningModule
@@ -25,16 +26,12 @@ class PLModel(LightningModule):
     def training_step(self, batch, batch_idx):
         x, y = batch
         y_hat = self(x).view(-1)
-        # y_hat = torch.where(y_hat < 0, 0., y_hat)
-        # y_hat = y_hat.float()
         
         loss = F.mse_loss(y_hat, y)
         loss /= x.size(0)
-        train_acc = FM.accuracy(y_hat.int(), y.int())
-        # loss /= x.size(0)
+        
         log_dict = {
             "train/loss": loss,
-            "train/acc": train_acc,
         }
         self.log_dict(log_dict, on_epoch=True)
         return loss
@@ -42,7 +39,11 @@ class PLModel(LightningModule):
     def validation_step(self, batch, batch_idx):
         x, y = batch
         y_hat = self(x).view(-1)
-        # y_hat = torch.where(y_hat < 0, 0., y_hat)
+        
+        # y_hat = y_hat.cpu().numpy()
+        # y_hat = torch.from_numpy(np.where(y_hat < 0., 0., y_hat)).cuda()
+        
+        # y_hat = torch.where(y_hat < 0, 0, y_hat)
         # y_hat = y_hat.float()
 
         # round, loss 확인
