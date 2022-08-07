@@ -1,4 +1,5 @@
 import hydra
+import torch
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers.wandb import WandbLogger
@@ -35,7 +36,6 @@ def main(cfg):
         train_dataloader,
         eval_dataloader,
     )
-
 
 if __name__ == "__main__":
     main()
