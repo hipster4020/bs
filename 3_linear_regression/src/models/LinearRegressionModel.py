@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 from pytorch_lightning import LightningModule
 from torch.nn import functional as F
-from torchmetrics import functional as FM
 
 torch.set_printoptions(precision=0)
 
@@ -44,7 +43,7 @@ class PLModel(LightningModule):
         loss /= y_hat.size(0)
 
         log_dict = {
-            "eval/loss": loss,
+            "eval/loss": loss
         }
         self.log_dict(log_dict, on_epoch=True)
 
